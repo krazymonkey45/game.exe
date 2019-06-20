@@ -24,7 +24,7 @@ function addItems() {
   createItem(30, 400, 'coin');
   createItem(600, 250, 'coin');
   createItem(225, 200, 'coin');
-  createItem(5, 5, 'posion' );
+  createItem(250, 250, 'poison' );
 }
 
 // add platforms to the game
@@ -66,6 +66,7 @@ function itemHandler(player, item) {
   }
 }
 
+
 // when the player collects the badge at the end of the game
 function badgeHandler(player, badge) {
   badge.kill();
@@ -88,7 +89,7 @@ window.onload = function () {
     game.load.spritesheet('player', 'assets/chalkers.png', 48, 62);
     game.load.spritesheet('coin', 'assets/coin.png', 36, 44);
     game.load.spritesheet('badge', 'assets/badge.png', 42, 54);
-    game.load.spritesheet('poison', 'assets/poison.png', 42, 32);
+    game.load.spritesheet('poison', 'assets/poison.png', 32, 32);
   }
 
   // initial game set up
