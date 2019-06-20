@@ -9,36 +9,44 @@ var jumpButton;
 var text;
 var winningMessage;
 var won = false;
-var currentScore = 90;
+var currentScore = 0;
 var winningScore = 100;
+var losingScore = -25;
+var losingMessage;
 
 // add collectable items to the game
 function addItems() {
   items = game.add.physicsGroup();
   createItem(375, 400, 'coin');
-  createItem(375, 500, 'coin');
-  createItem(70, 400, 'coin');
-  createItem(60, 400, 'coin');
-  createItem(50, 400, 'coin');
-  createItem(40, 400, 'coin');
-  createItem(30, 400, 'coin');
-  createItem(600, 250, 'coin');
+  createItem(575, 500, 'coin');
+  createItem(225, 500, 'coin');
+  createItem(100, 250, 'coin');
+  createItem(575, 150, 'coin');
+  createItem(525, 300, 'coin');
+  createItem(650, 250, 'coin');
   createItem(225, 200, 'coin');
-  createItem(250, 250, 'poison' );
+  // add poison to game
+  createItem(375, 100, 'poison');
+  createItem(370,500,'poison');
+  createItem(100, 375, 'poison');
+  createItem(125, 50, 'star');
+  
 }
 
 // add platforms to the game
 function addPlatforms() {
   platforms = game.add.physicsGroup();
-  platforms.create(450, 550, 'platform2');
-  platforms.create(400, 500, 'platform2');
-  platforms.create(300, 400, 'platform');
-  platforms.create(200, 100, 'platform2');
-  platforms.create(150, 150, 'platform');
+  platforms.create(450, 550, 'platform');
+  platforms.create(100, 550, 'platform');
+  platforms.create(300, 450, 'platform');
+  platforms.create(250, 150, 'platform');
+  platforms.create(50, 300, 'platform');
+  platforms.create(150, 250, 'platform');
+  platforms.create(650, 300, 'platform');
   platforms.create(550, 200, 'platform2');
-  platforms.create(200, 320, 'platform');
-  platforms.create(250, 300, 'platform');
-  platforms.create(300, 200, 'platform2');
+  platforms.create(300, 450, 'platform2');
+  platforms.create(400, 350, 'platform2');
+  platforms.create(100, 100, 'platform2');
   platforms.setAll('body.immovable', true);
 }
 
@@ -58,23 +66,19 @@ function createBadge() {
 }
 
 // when the player collects an item on the screen
-  function itemHandler(player, item) {
-    item.kill();  
-    if (item.key == 'coin') { // add 10 if item is a coin
-      currentScore = currentScore + 10;
-   } else if (item.key == 'poison') { // substract 25 points if its a poison
-      currentScore = currentScore - 25;
-   } else { // add 25 if item is a star
-      currentScore = currentScore + 25;
-   }
-   if (currentScore === winningScore) {
-        createBadge();
-    }
-
-//add 10 points if iten is coin
-// subtract 20 if item is poison
-// add 20 points
-
+function itemHandler(player, item) {
+  item.kill();  
+  if (item.key == 'coin') { // add 10 if item is a coin
+    currentScore = currentScore + 10;
+ } else if (item.key == 'poison') { // substract 25 points if its a poison
+    currentScore = currentScore - 25;
+ } else { // add 25 if item is a star
+    currentScore = currentScore + 25;
+ }
+ if (currentScore === winningScore) {
+      createBadge();
+  }
+}
 
 // when the player collects the badge at the end of the game
 function badgeHandler(player, badge) {
@@ -93,13 +97,16 @@ window.onload = function () {
     //Load images
     game.load.image('platform', 'assets/platform_1.png');
     game.load.image('platform2', 'assets/platform_2.png');
+
     
     //Load spritesheets
     game.load.spritesheet('player', 'assets/chalkers.png', 48, 62);
     game.load.spritesheet('coin', 'assets/coin.png', 36, 44);
     game.load.spritesheet('badge', 'assets/badge.png', 42, 54);
+    // add a poison
     game.load.spritesheet('poison', 'assets/poison.png', 32, 32);
     game.load.spritesheet('star', 'assets/star.png', 32, 32);
+
   }
 
   // initial game set up
@@ -154,7 +161,13 @@ window.onload = function () {
       winningMessage.text = "YOU WIN!!!";
     }
   }
- 
+  if (currentScore === losingScore){
+    winningMessage.text = "YOU LOST!!";
+    losingMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
+    lossingMessage.anchor.setTo(0.5, 1);
+      
+  }
+
   function render() {
 
   }
