@@ -9,19 +9,36 @@ var jumpButton;
 var text;
 var winningMessage;
 var won = false;
-var currentScore = 0;
+var currentScore = 90;
 var winningScore = 100;
 
 // add collectable items to the game
 function addItems() {
   items = game.add.physicsGroup();
+  createItem(375, 400, 'coin');
+  createItem(375, 500, 'coin');
+  createItem(70, 400, 'coin');
+  createItem(60, 400, 'coin');
   createItem(50, 400, 'coin');
+  createItem(40, 400, 'coin');
+  createItem(30, 400, 'coin');
+  createItem(600, 250, 'coin');
+  createItem(225, 200, 'coin');
+  createItem(5, 5, 'posion' );
 }
 
 // add platforms to the game
 function addPlatforms() {
   platforms = game.add.physicsGroup();
-  platforms.create(450, 150, 'platform');
+  platforms.create(450, 550, 'platform2');
+  platforms.create(400, 500, 'platform2');
+  platforms.create(300, 400, 'platform');
+  platforms.create(200, 100, 'platform2');
+  platforms.create(150, 150, 'platform');
+  platforms.create(550, 200, 'platform2');
+  platforms.create(200, 320, 'platform');
+  platforms.create(250, 300, 'platform');
+  platforms.create(300, 200, 'platform2');
   platforms.setAll('body.immovable', true);
 }
 
@@ -65,11 +82,13 @@ window.onload = function () {
     
     //Load images
     game.load.image('platform', 'assets/platform_1.png');
+    game.load.image('platform2', 'assets/platform_2.png');
     
     //Load spritesheets
     game.load.spritesheet('player', 'assets/chalkers.png', 48, 62);
     game.load.spritesheet('coin', 'assets/coin.png', 36, 44);
     game.load.spritesheet('badge', 'assets/badge.png', 42, 54);
+    game.load.spritesheet('poison', 'assets/poison.png', 42, 32);
   }
 
   // initial game set up
