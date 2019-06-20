@@ -58,20 +58,18 @@ function createBadge() {
 }
 
 // when the player collects an item on the screen
-function itemHandler(player, item) {
-  item.kill();
-  console.log(item.key)
-  if (item.key =="coin"){
-    currentScore = currentScore + 10;
-  } else if (item.key == "poison"){
-    currentScore = currentScore -25;
-  } else if (item.key == "star"){
-    currentScore = currentScore +25;
-  }
-  
-  
- 
-  }
+  function itemHandler(player, item) {
+    item.kill();  
+    if (item.key == 'coin') { // add 10 if item is a coin
+      currentScore = currentScore + 10;
+   } else if (item.key == 'poison') { // substract 25 points if its a poison
+      currentScore = currentScore - 25;
+   } else { // add 25 if item is a star
+      currentScore = currentScore + 25;
+   }
+   if (currentScore === winningScore) {
+        createBadge();
+    }
 
 //add 10 points if iten is coin
 // subtract 20 if item is poison
