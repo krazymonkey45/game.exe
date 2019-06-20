@@ -61,14 +61,21 @@ function createBadge() {
 function itemHandler(player, item) {
   item.kill();
   console.log(item.key)
-  currentScore = currentScore + 10;
-  if (currentScore === winningScore) {
-      createBadge();
+  if (item.key =="coin"){
+    currentScore = currentScore + 10;
+  } else if (item.key == "poison"){
+    currentScore = currentScore -25;
+  } else if (item.key == "star"){
+    currentScore = currentScore +25;
   }
-}
+  
+  
+ 
+  }
+
 //add 10 points if iten is coin
 // subtract 20 if item is poison
-// add 20 points if the item is a star
+// add 20 points
 
 
 // when the player collects the badge at the end of the game
@@ -94,6 +101,7 @@ window.onload = function () {
     game.load.spritesheet('coin', 'assets/coin.png', 36, 44);
     game.load.spritesheet('badge', 'assets/badge.png', 42, 54);
     game.load.spritesheet('poison', 'assets/poison.png', 32, 32);
+    game.load.spritesheet('star', 'assets/star.png', 32, 32);
   }
 
   // initial game set up
@@ -148,7 +156,7 @@ window.onload = function () {
       winningMessage.text = "YOU WIN!!!";
     }
   }
-
+ 
   function render() {
 
   }
