@@ -9,9 +9,10 @@ var jumpButton;
 var text;
 var winningMessage;
 var won = false;
+var loss = false;
 var currentScore = 0;
 var winningScore = 100;
-var losingScore = -25;
+var losingScore = 0;
 var losingMessage;
 
 // add collectable items to the game
@@ -78,6 +79,10 @@ function itemHandler(player, item) {
  if (currentScore === winningScore) {
       createBadge();
   }
+if (item.key =='poison'){
+    loss = true;
+}
+
 }
 
 // when the player collects the badge at the end of the game
@@ -126,6 +131,8 @@ window.onload = function () {
     text = game.add.text(16, 16, "SCORE: " + currentScore, { font: "bold 24px Arial", fill: "white" });
     winningMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
     winningMessage.anchor.setTo(0.5, 1);
+    losingMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
+    losingMessage.anchor.setTo(0.5, 1);
   }
 
   // while the game is running
@@ -160,13 +167,18 @@ window.onload = function () {
     if (won) {
       winningMessage.text = "YOU WIN!!!";
     }
+    if (loss) {
+        losingMessage.text = "YOU LOST";
+    }
+    if (loss){
+    sprie.player.destroy();{
+
+    }
+
+    }
   }
-  if (currentScore === losingScore){
-    winningMessage.text = "YOU LOST!!";
-    losingMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
-    lossingMessage.anchor.setTo(0.5, 1);
-      
-  }
+
+
 
   function render() {
 
